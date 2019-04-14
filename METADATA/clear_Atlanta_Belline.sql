@@ -1,0 +1,1 @@
+DROP DATABASE IF EXISTS atlanta_beltline;

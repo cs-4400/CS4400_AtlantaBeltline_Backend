@@ -9,69 +9,68 @@ public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Username")
-    private String Username;
+    private String username;
     @Column(name = "Password")
-    private String Password;
+    private String password;
     @Column(name = "FirstName")
-    private String FirstName;
+    private String firstName;
     @Column(name = "LastName")
-    private String LastName;
+    private String lastName;
     @Column(name = "Status")
-    private int Status;
+    private int status;
 
     public UserDTO() {
     }
 
     public UserDTO(String username, String password, String firstName, int status) {
-        this.Username = username;
-        this.Password = password;
-        this.FirstName = username;
-        this.Status = status;
+        this.username = username;
+        this.password = password;
+        this.firstName = username;
+        this.status = status;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public int getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(int status) {
-        Status = status;
+        this.status = status;
     }
 
     public String toString(){
-        return Username + "|" + FirstName + "|" + LastName + "| Status: " + Status;
+        return username + "|" + firstName + "|" + lastName + "| status: " + status;
     }
-
 
 }
