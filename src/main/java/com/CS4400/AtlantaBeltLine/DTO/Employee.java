@@ -4,15 +4,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "employee")
-public class EmployeeDTO {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Username")
+    @Column(name = "username")
     private String username;
-    @Column(name = "EmpID")
-    private int empID;
-    @Column(name = "Phone")
+    @Column(name = "emp_ID")
+    private int emp_ID;
+    @Column(name = "phone")
     private String phone;
     @Column(name = "Address")
     private String address;
@@ -29,12 +29,12 @@ public class EmployeeDTO {
         this.username = username;
     }
 
-    public int getEmpID() {
-        return empID;
+    public int getEmp_ID() {
+        return emp_ID;
     }
 
-    public void setEmpID(int empID) {
-        this.empID = empID;
+    public void setEmp_ID(int emp_ID) {
+        this.emp_ID = emp_ID;
     }
 
     public String getPhone() {

@@ -1,21 +1,15 @@
 package com.CS4400.AtlantaBeltLine.Controller;
-import com.CS4400.AtlantaBeltLine.DTO.UserDTO;
-import com.CS4400.AtlantaBeltLine.Util.Constants;
+import com.CS4400.AtlantaBeltLine.DAO.TransitDAO;
+import com.CS4400.AtlantaBeltLine.DTO.TransitDTO;
 import com.CS4400.AtlantaBeltLine.DAO.UserDAO;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class AtlantaBeltLineController {
@@ -24,16 +18,73 @@ public class AtlantaBeltLineController {
     @Autowired
     UserDAO userDAO;
 
-    @RequestMapping(value = Constants.USER_ENDPOINT, method = RequestMethod.GET, produces = "application/json")
-    public List<UserDTO> getUsers() {
-        LOGGER.info("Getting Users");
-        return userDAO.getAllUsers();
+    @Autowired
+    private TransitDAO transitDAO;
+
+
+    @RequestMapping("/test")
+    public String welcome() {
+        LOGGER.info("TESTING");
+        return "Welcome to Atlanta Beltline App!";
     }
 
-    @RequestMapping(value = "/getString", produces = "application/json")
-    public Map getString() {
-        return Collections.singletonMap("response", "Hello World");
+    @RequestMapping(value = "/transit", method = RequestMethod.GET, produces = "application/json")
+    public List<TransitDTO> getTransit() {
+        LOGGER.info("GETTING TRANSIT");
+        return transitDAO.getAllTransits();
     }
+
+
+//    @RequestMapping(value = "/transits")
+//    public ModelAndView listTransits(@ModelAttribute("transit") TransitDTO transit) {
+//        ModelAndView model = new ModelAndView("transit");
+//
+//        List transitList = transitDAO.getAllTransits();
+//        System.out.println(transitList);
+//        model.addObject("transitList", transitList);
+//
+//        return  model;
+//    }
+//
+//
+//    @RequestMapping(value = "/json", method = RequestMethod.GET, produces = "application/json")
+//    @ResponseBody
+//    public Map<String, Object> bar() {
+//        HashMap<String, Object> map = new HashMap<String, Object>();
+//        map.put("test", "jsonRestExample");
+//        return map;
+//    }
+//
+//    @RequestMapping(value = Constants.USER_ENDPOINT, method = RequestMethod.GET, produces = "application/json")
+//    public List<User> getUsers() {
+//        LOGGER.info("Getting Users");
+//        return userDAO.getAllUsers();
+//    }
+//
+//    @GetMapping("/status/check")
+//    public String status() {
+//        return "working";
+//    }
+//
+//    @RequestMapping("/home")
+//    @ResponseBody
+//    public String hello() {
+//        return "Welcome to atlanta_beltline";
+//    }
+//
+//    @GetMapping("/test")
+//    public Map<String, String> sayHello() {
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put("key", "value");
+//        map.put("foo", "bar");
+//        map.put("aa", "bb");
+//        return map;
+//    }
+//
+//    @RequestMapping(value = "/getString", produces = "application/json")
+//    public Map getString() {
+//        return Collections.singletonMap("response", "Hello World");
+//    }
 
 }
 

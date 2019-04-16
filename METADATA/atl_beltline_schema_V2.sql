@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: atlanta_beltline
+-- Host: 127.0.0.1    Database: atl_beltline
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
@@ -15,35 +15,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS Atlanta_Beltline;
-CREATE DATABASE Atlanta_Beltline;
-USE Atlanta_Beltline;
-
-
---
--- Table structure for table `administrator`
---
-
-DROP TABLE IF EXISTS `administrator`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `administrator` (
-  `Username` varchar(55) NOT NULL,
-  PRIMARY KEY (`Username`),
-  CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `administrator`
---
-
-LOCK TABLES `administrator` WRITE;
-/*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
-INSERT INTO `administrator` VALUES ('james.smith');
-/*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
-UNLOCK TABLES;
-
+DROP DATABASE IF EXISTS atl_beltline;
+CREATE DATABASE atl_beltline;
+USE atl_beltline;
 --
 -- Table structure for table `assign_to`
 --
@@ -59,7 +33,7 @@ CREATE TABLE `assign_to` (
   PRIMARY KEY (`StaffUsername`,`Event_Name`,`Event_Start`,`Site_Name`),
   KEY `Event_Name` (`Event_Name`,`Event_Start`),
   KEY `Site_Name` (`Site_Name`),
-  CONSTRAINT `assign_to_ibfk_1` FOREIGN KEY (`StaffUsername`) REFERENCES `staff` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `assign_to_ibfk_1` FOREIGN KEY (`StaffUsername`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `assign_to_ibfk_2` FOREIGN KEY (`Event_Name`, `Event_Start`) REFERENCES `event` (`event_name`, `event_start`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `assign_to_ibfk_3` FOREIGN KEY (`Site_Name`) REFERENCES `site` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -118,6 +92,7 @@ CREATE TABLE `employee` (
   `City` varchar(50) DEFAULT NULL,
   `State` varchar(3) DEFAULT NULL,
   `Zip` int(11) DEFAULT NULL,
+  `EmpType` enum('Admin','Manager','Staff') DEFAULT NULL,
   PRIMARY KEY (`EmpID`),
   KEY `Username` (`Username`),
   CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -130,7 +105,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('james.smith',1,'4043721234','123 East Main Street','Rochester','NY',14604),('michael.smith',2,'4043726789','350 Ferst Drive','Atlanta','GA',30332),('robert.smith',3,'1234567890','123 East Main Street','Columbus','OH',43215),('maria.garcia',4,'7890123456','123 East Main Street','Richland','PA',17987),('david.smith',5,'5124776435','350 Ferst Drive','Atlanta','GA',30332),('manager1',6,'8045126767','123 East Main Street','Rochester','NY',14604),('manager2',7,'9876543210','123 East Main Street','Rochester','NY',14604),('manager3',8,'5432167890','350 Ferst Drive','Atlanta','GA',30332),('manager4',9,'8053467565','123 East Main Street','Columbus','OH',43215),('manager5',10,'8031446782','801 Atlantic Drive','Atlanta','GA',30332),('staff1',11,'8024456765','266 Ferst Drive Northwest','Atlanta','GA',30332),('staff2',12,'8888888888','266 Ferst Drive Northwest','Atlanta','GA',30332),('staff3',13,'3333333333','801 Atlantic Drive','Atlanta','GA',30332);
+INSERT INTO `employee` VALUES ('james.smith',1,'4043721234','123 East Main Street','Rochester','NY',14604,'Admin'),('michael.smith',2,'4043726789','350 Ferst Drive','Atlanta','GA',30332,'Staff'),('robert.smith',3,'1234567890','123 East Main Street','Columbus','OH',43215,'Staff'),('maria.garcia',4,'7890123456','123 East Main Street','Richland','PA',17987,'Manager'),('david.smith',5,'5124776435','350 Ferst Drive','Atlanta','GA',30332,'Manager'),('manager1',6,'8045126767','123 East Main Street','Rochester','NY',14604,'Manager'),('manager2',7,'9876543210','123 East Main Street','Rochester','NY',14604,'Manager'),('manager3',8,'5432167890','350 Ferst Drive','Atlanta','GA',30332,'Manager'),('manager4',9,'8053467565','123 East Main Street','Columbus','OH',43215,'Manager'),('manager5',10,'8031446782','801 Atlantic Drive','Atlanta','GA',30332,'Manager'),('staff1',11,'8024456765','266 Ferst Drive Northwest','Atlanta','GA',30332,'Staff'),('staff2',12,'8888888888','266 Ferst Drive Northwest','Atlanta','GA',30332,'Staff'),('staff3',13,'3333333333','801 Atlantic Drive','Atlanta','GA',30332,'Staff');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,30 +142,6 @@ INSERT INTO `event` VALUES ('Arboretum Walking Tour','2019-02-08','Inman Park','
 UNLOCK TABLES;
 
 --
--- Table structure for table `manager`
---
-
-DROP TABLE IF EXISTS `manager`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `manager` (
-  `Username` varchar(55) NOT NULL,
-  PRIMARY KEY (`Username`),
-  CONSTRAINT `manager_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `manager`
---
-
-LOCK TABLES `manager` WRITE;
-/*!40000 ALTER TABLE `manager` DISABLE KEYS */;
-INSERT INTO `manager` VALUES ('david.smith'),('manager1'),('manager2'),('manager3'),('manager4'),('manager5'),('maria.garcia');
-/*!40000 ALTER TABLE `manager` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `site`
 --
 
@@ -205,7 +156,7 @@ CREATE TABLE `site` (
   `ManagerUsername` varchar(55) NOT NULL,
   PRIMARY KEY (`Name`),
   KEY `ManagerUsername` (`ManagerUsername`),
-  CONSTRAINT `site_ibfk_1` FOREIGN KEY (`ManagerUsername`) REFERENCES `manager` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `site_ibfk_1` FOREIGN KEY (`ManagerUsername`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,30 +168,6 @@ LOCK TABLES `site` WRITE;
 /*!40000 ALTER TABLE `site` DISABLE KEYS */;
 INSERT INTO `site` VALUES ('Atlanta Beltline Center','112 Krog Street Northeast',30307,'No','manager3'),('Historic Fourth Ward Park','680 Dallas Street Northeast',30308,'Yes','manager4'),('Inman Park',NULL,30307,'Yes','david.smith'),('Piedmont Park','400 Park Drive Northeast',30306,'Yes','manager2'),('Westview Cemetery','1680 Westview Drive Southwest',30310,'No','manager5');
 /*!40000 ALTER TABLE `site` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `staff`
---
-
-DROP TABLE IF EXISTS `staff`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `staff` (
-  `Username` varchar(55) NOT NULL,
-  PRIMARY KEY (`Username`),
-  CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `staff`
---
-
-LOCK TABLES `staff` WRITE;
-/*!40000 ALTER TABLE `staff` DISABLE KEYS */;
-INSERT INTO `staff` VALUES ('michael.smith'),('robert.smith'),('staff1'),('staff2'),('staff3');
-/*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -306,10 +233,11 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `Username` varchar(50) NOT NULL,
-  `Password` varchar(50) DEFAULT NULL,
-  `FirstName` varchar(50) DEFAULT NULL,
-  `LastName` varchar(50) DEFAULT NULL,
+  `Password` varchar(50) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
+  `LastName` varchar(50) NOT NULL,
   `Status` enum('Pending','Approved','Declined') DEFAULT 'Pending',
+  `UserType` enum('Employee','Visitor','Employee, Visitor','User') DEFAULT NULL,
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -320,7 +248,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('david.smith','dsmith456','David','Smith','Approved'),('james.smith','jsmith123','James','Smith','Approved'),('manager1','manager1','Manager','One','Pending'),('manager2','manager2','Manager','Two','Approved'),('manager3','manager3','Manager','Three','Approved'),('manager4','manager4','Manager','Four','Approved'),('manager5','manager5','Manager','Five','Approved'),('maria.garcia','mgarcia123','Maria','Garcia','Approved'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined'),('mary.smith','msmith789','Mary','Smith','Approved'),('michael.smith','msmith456','Michael','Smith','Approved'),('robert.smith','rsmith789','Robert','Smith','Approved'),('staff1','staff1234','Staff','One','Approved'),('staff2','staff4567','Staff','Two','Approved'),('staff3','staff7890','Staff','Three','Approved'),('user1','user123456','User','One','Pending'),('visitor1','visitor123','Visitor','One','Approved');
+INSERT INTO `user` VALUES ('david.smith','dsmith456','David','Smith','Approved','Employee'),('james.smith','jsmith123','James','Smith','Approved','Employee'),('manager1','manager1','Manager','One','Pending','Employee'),('manager2','manager2','Manager','Two','Approved','Employee, Visitor'),('manager3','manager3','Manager','Three','Approved','Employee'),('manager4','manager4','Manager','Four','Approved','Employee, Visitor'),('manager5','manager5','Manager','Five','Approved','Employee, Visitor'),('maria.garcia','mgarcia123','Maria','Garcia','Approved','Employee, Visitor'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved','User'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined','Visitor'),('mary.smith','msmith789','Mary','Smith','Approved','Visitor'),('michael.smith','msmith456','Michael','Smith','Approved','Employee, Visitor'),('robert.smith','rsmith789','Robert','Smith','Approved','Employee'),('staff1','staff1234','Staff','One','Approved','Employee'),('staff2','staff4567','Staff','Two','Approved','Employee, Visitor'),('staff3','staff7890','Staff','Three','Approved','Employee, Visitor'),('user1','user123456','User','One','Pending','User'),('visitor1','visitor123','Visitor','One','Approved','Visitor');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,30 +336,6 @@ LOCK TABLES `visit_site` WRITE;
 INSERT INTO `visit_site` VALUES ('mary.smith','Atlanta Beltline Center','2019-02-01'),('mary.smith','Atlanta Beltline Center','2019-02-10'),('visitor1','Atlanta Beltline Center','2019-02-09'),('visitor1','Atlanta Beltline Center','2019-02-13'),('mary.smith','Historic Fourth Ward Park','2019-02-02'),('visitor1','Historic Fourth Ward Park','2019-02-11'),('mary.smith','Inman Park','2019-02-01'),('mary.smith','Inman Park','2019-02-02'),('mary.smith','Inman Park','2019-02-03'),('visitor1','Inman Park','2019-02-01'),('mary.smith','Piedmont Park','2019-02-02'),('visitor1','Piedmont Park','2019-02-01'),('visitor1','Piedmont Park','2019-02-11'),('visitor1','Westview Cemetery','2019-02-06');
 /*!40000 ALTER TABLE `visit_site` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `visitor`
---
-
-DROP TABLE IF EXISTS `visitor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `visitor` (
-  `Username` varchar(50) NOT NULL,
-  PRIMARY KEY (`Username`),
-  CONSTRAINT `visitor_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `visitor`
---
-
-LOCK TABLES `visitor` WRITE;
-/*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
-INSERT INTO `visitor` VALUES ('manager2'),('manager4'),('manager5'),('maria.garcia'),('michael.smith'),('staff2'),('staff3'),('visitor1');
-/*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -442,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-06 21:19:18
+-- Dump completed on 2019-04-14 16:26:48

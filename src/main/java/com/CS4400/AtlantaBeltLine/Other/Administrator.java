@@ -1,20 +1,20 @@
-package com.CS4400.AtlantaBeltLine.DTO;
+package com.CS4400.AtlantaBeltLine.Other;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "administrator")
-public class AdministratorDTO {
+public class Administrator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Username")
     private String Username;
 
-    public AdministratorDTO() {
+    public Administrator() {
     }
 
-    public AdministratorDTO(String username) {
+    public Administrator(String username) {
         this.Username = username;
     }
 

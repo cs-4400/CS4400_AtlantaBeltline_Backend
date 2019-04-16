@@ -1,4 +1,4 @@
 package com.CS4400.AtlantaBeltLine.DTO;
 
-public class SiteDTO {
+public class Manager {
 }

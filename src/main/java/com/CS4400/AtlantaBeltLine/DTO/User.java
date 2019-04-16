@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-public class UserDTO {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,10 +19,10 @@ public class UserDTO {
     @Column(name = "Status")
     private int status;
 
-    public UserDTO() {
+    public User() {
     }
 
-    public UserDTO(String username, String password, String firstName, int status) {
+    public User(String username, String password, String firstName, int status) {
         this.username = username;
         this.password = password;
         this.firstName = username;
