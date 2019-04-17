@@ -1,4 +1,4 @@
-package com.CS4400.AtlantaBeltLine.Other;
+package com.CS4400.AtlantaBeltLine.OtherStuff;
 
 import javax.persistence.*;
 

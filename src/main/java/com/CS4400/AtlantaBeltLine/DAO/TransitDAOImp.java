@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public class TransitDAOImp implements TransitDAO {
-//    private static final Logger LOGGER = LogManager.getLogger(TransitDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(TransitDAO.class);
 
     private static final String SELECT_TRANSIT = "SELECT * FROM transit";
 

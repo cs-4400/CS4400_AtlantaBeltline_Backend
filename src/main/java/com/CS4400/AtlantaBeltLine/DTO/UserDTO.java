@@ -17,16 +17,18 @@ public class UserDTO {
 //    @Column(name = "LastName")
     private String lastName;
 //    @Column(name = "Status")
-    private int status;
+//    private enum status;
+//
+//    privaet enum user_type;
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String password, String firstName, int status) {
+    public UserDTO(String username, String password, String firstName) {
         this.username = username;
         this.password = password;
         this.firstName = username;
-        this.status = status;
+//        this.status = status;
     }
 
     public String getUsername() {
@@ -61,16 +63,16 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+//    public int getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(int status) {
+//        this.status = status;
+//    }
 
     public String toString(){
-        return username + "|" + firstName + "|" + lastName + "| status: " + status;
+        return username + "|" + firstName + "|" + lastName;
     }
 
 }

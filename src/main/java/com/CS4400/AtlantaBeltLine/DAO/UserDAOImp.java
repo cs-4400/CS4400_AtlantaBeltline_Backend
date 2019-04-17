@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDAOImp implements UserDAO {
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(UserDAO.class);
 
-    private static final String USER_TABLE = "UserDTO";
+    private static final String USER_TABLE = "user";
     private static final String SELECT_ALL_USERS = "SELECT * FROM " + USER_TABLE;
 
 
@@ -22,7 +22,16 @@ public class UserDAOImp implements UserDAO {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return null;
+
+        return jdbcTemplate.query(SELECT_ALL_USERS, (rs, i) -> {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUsername(rs.getString("username"));
+            userDTO.setPassword(rs.getString("password"));
+            userDTO.setFirstName(rs.getString("first_name"));
+            userDTO.setLastName(rs.getString("last_name"));
+//            userDTO.setStatus(rs.getEnum????);
+            return userDTO;
+        });
     }
 
     @Override
@@ -32,16 +41,17 @@ public class UserDAOImp implements UserDAO {
 
     @Override
     public int createUser(UserDTO userDTO) {
-        String sql = "INSERT INTO user(Username, Password, FirstName, LastName, Status) values(?,?,?,?,?)";
-
-        try {
-            int counter = jdbcTemplate.update(sql,
-                    new Object[] {userDTO.getUsername(), userDTO.getLastName(), userDTO.getPassword(), userDTO.getStatus()});
-            return counter;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+//        String sql = "INSERT INTO user(Username, Password, FirstName, LastName, Status) values(?,?,?,?,?)";
+//
+//        try {
+//            int counter = jdbcTemplate.update(sql,
+//                    new Object[] {userDTO.getUsername(), userDTO.getLastName(), userDTO.getPassword(), userDTO.getStatus()});
+//            return counter;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return 0;
+//        }
+        return 0;
     }
 
     @Override
