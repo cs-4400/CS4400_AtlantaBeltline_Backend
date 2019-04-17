@@ -30,7 +30,7 @@ DROP TABLE IF EXISTS `administrator`;
 CREATE TABLE `administrator` (
   `Username` varchar(55) NOT NULL,
   PRIMARY KEY (`Username`),
-  CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -120,7 +120,7 @@ CREATE TABLE `employee` (
   `Zip` int(11) DEFAULT NULL,
   PRIMARY KEY (`EmpID`),
   KEY `Username` (`Username`),
-  CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -176,7 +176,7 @@ DROP TABLE IF EXISTS `manager`;
 CREATE TABLE `manager` (
   `Username` varchar(55) NOT NULL,
   PRIMARY KEY (`Username`),
-  CONSTRAINT `manager_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `manager_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -229,7 +229,7 @@ DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
   `Username` varchar(55) NOT NULL,
   PRIMARY KEY (`Username`),
-  CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -257,7 +257,7 @@ CREATE TABLE `take_transit` (
   `Date` date NOT NULL,
   PRIMARY KEY (`Username`,`Date`,`Type`,`Route`),
   KEY `Type` (`Type`,`Route`),
-  CONSTRAINT `take_transit_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `take_transit_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `take_transit_ibfk_2` FOREIGN KEY (`Type`, `Route`) REFERENCES `transitDTO` (`type`, `route`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -298,13 +298,13 @@ INSERT INTO `transitDTO` VALUES ('Bike','Relay',1),('Bus','152',2),('MARTA','Blu
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `userDTO`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `userDTO`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `user` (
+CREATE TABLE `userDTO` (
   `Username` varchar(50) NOT NULL,
   `Password` varchar(50) DEFAULT NULL,
   `FirstName` varchar(50) DEFAULT NULL,
@@ -315,13 +315,13 @@ CREATE TABLE `user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `userDTO`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('david.smith','dsmith456','David','Smith','Approved'),('james.smith','jsmith123','James','Smith','Approved'),('manager1','manager1','Manager','One','Pending'),('manager2','manager2','Manager','Two','Approved'),('manager3','manager3','Manager','Three','Approved'),('manager4','manager4','Manager','Four','Approved'),('manager5','manager5','Manager','Five','Approved'),('maria.garcia','mgarcia123','Maria','Garcia','Approved'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined'),('mary.smith','msmith789','Mary','Smith','Approved'),('michael.smith','msmith456','Michael','Smith','Approved'),('robert.smith','rsmith789','Robert','Smith','Approved'),('staff1','staff1234','Staff','One','Approved'),('staff2','staff4567','Staff','Two','Approved'),('staff3','staff7890','Staff','Three','Approved'),('user1','user123456','User','One','Pending'),('visitor1','visitor123','Visitor','One','Approved');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `userDTO` WRITE;
+/*!40000 ALTER TABLE `userDTO` DISABLE KEYS */;
+INSERT INTO `userDTO` VALUES ('david.smith','dsmith456','David','Smith','Approved'),('james.smith','jsmith123','James','Smith','Approved'),('manager1','manager1','Manager','One','Pending'),('manager2','manager2','Manager','Two','Approved'),('manager3','manager3','Manager','Three','Approved'),('manager4','manager4','Manager','Four','Approved'),('manager5','manager5','Manager','Five','Approved'),('maria.garcia','mgarcia123','Maria','Garcia','Approved'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined'),('mary.smith','msmith789','Mary','Smith','Approved'),('michael.smith','msmith456','Michael','Smith','Approved'),('robert.smith','rsmith789','Robert','Smith','Approved'),('staff1','staff1234','Staff','One','Approved'),('staff2','staff4567','Staff','Two','Approved'),('staff3','staff7890','Staff','Three','Approved'),('user1','user123456','UserDTO','One','Pending'),('visitor1','visitor123','Visitor','One','Approved');
+/*!40000 ALTER TABLE `userDTO` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -335,7 +335,7 @@ CREATE TABLE `user_email` (
   `Username` varchar(50) NOT NULL,
   `Email` varchar(75) NOT NULL,
   PRIMARY KEY (`Username`,`Email`),
-  CONSTRAINT `user_email_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `user_email_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -365,7 +365,7 @@ CREATE TABLE `visit_event` (
   PRIMARY KEY (`Username`,`Visit_Date`,`Event_Name`,`Event_Start`,`Site_Name`),
   KEY `Event_Name` (`Event_Name`,`Event_Start`),
   KEY `Site_Name` (`Site_Name`),
-  CONSTRAINT `visit_event_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `visit_event_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `visit_event_ibfk_2` FOREIGN KEY (`Event_Name`, `Event_Start`) REFERENCES `event` (`event_name`, `event_start`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `visit_event_ibfk_3` FOREIGN KEY (`Site_Name`) REFERENCES `site` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -394,7 +394,7 @@ CREATE TABLE `visit_site` (
   `Visit_Date` date NOT NULL,
   PRIMARY KEY (`Username`,`Visit_Date`,`Site_Name`),
   KEY `Site_Name` (`Site_Name`),
-  CONSTRAINT `visit_site_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `visit_site_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `visit_site_ibfk_2` FOREIGN KEY (`Site_Name`) REFERENCES `site` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -419,7 +419,7 @@ DROP TABLE IF EXISTS `visitor`;
 CREATE TABLE `visitor` (
   `Username` varchar(50) NOT NULL,
   PRIMARY KEY (`Username`),
-  CONSTRAINT `visitor_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `visitor_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

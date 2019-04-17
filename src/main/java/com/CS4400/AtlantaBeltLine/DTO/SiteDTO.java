@@ -3,9 +3,9 @@ package com.CS4400.AtlantaBeltLine.DTO;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "site")
-public class Site {
+//@Entity
+//@Table(name = "site")
+public class SiteDTO {
 
     private String name;
     private String address;
@@ -13,10 +13,10 @@ public class Site {
     private String open_everyday; //should this be enum type????
     private String username;
 
-    public Site() {
+    public SiteDTO() {
     }
 
-    public Site(String name, String address, int zipcode, String open_everyday, String username) {
+    public SiteDTO(String name, String address, int zipcode, String open_everyday, String username) {
         this.name = name;
         this.address = address;
         this.zipcode = zipcode;

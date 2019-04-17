@@ -1,4 +1,4 @@
-package com.CS4400.AtlantaBeltLine.Application;
+package com.CS4400.AtlantaBeltLine;
 
 
 import org.springframework.boot.SpringApplication;

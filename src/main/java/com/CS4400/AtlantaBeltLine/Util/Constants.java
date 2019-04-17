@@ -4,4 +4,5 @@ public class Constants {
 
     //endpoints
     public final static String USER_ENDPOINT = "/user";
+    public final static String TRANSIT_ENDPOINT = "/transit";
 }

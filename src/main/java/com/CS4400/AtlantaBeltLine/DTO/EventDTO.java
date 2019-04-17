@@ -5,9 +5,9 @@ import javax.persistence.Table;
 import java.util.Date;
 
 
-@Entity
-@Table(name = "event")
-public class Event {
+//@Entity
+//@Table(name = "event")
+public class EventDTO {
 
     private String event_name;
     private Date event_start;
@@ -19,10 +19,10 @@ public class Event {
     private String description;
 
 
-    public Event() {
+    public EventDTO() {
     }
 
-    public Event(String event_name, Date event_start, String site_name, Date end_date, int event_price, int capacity, int min_staff, String description) {
+    public EventDTO(String event_name, Date event_start, String site_name, Date end_date, int event_price, int capacity, int min_staff, String description) {
         this.event_name = event_name;
         this.event_start = event_start;
         this.site_name = site_name;

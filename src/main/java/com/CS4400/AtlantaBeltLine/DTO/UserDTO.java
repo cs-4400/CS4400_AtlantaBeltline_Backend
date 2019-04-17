@@ -2,27 +2,27 @@ package com.CS4400.AtlantaBeltLine.DTO;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "user")
-public class User {
+//@Entity
+//@Table(name = "user")
+public class UserDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Username")
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "Username")
     private String username;
-    @Column(name = "Password")
+//    @Column(name = "Password")
     private String password;
-    @Column(name = "FirstName")
+//    @Column(name = "FirstName")
     private String firstName;
-    @Column(name = "LastName")
+//    @Column(name = "LastName")
     private String lastName;
-    @Column(name = "Status")
+//    @Column(name = "Status")
     private int status;
 
-    public User() {
+    public UserDTO() {
     }
 
-    public User(String username, String password, String firstName, int status) {
+    public UserDTO(String username, String password, String firstName, int status) {
         this.username = username;
         this.password = password;
         this.firstName = username;

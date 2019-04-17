@@ -1,6 +1,6 @@
 package com.CS4400.AtlantaBeltLine.DAO;
 
-import com.CS4400.AtlantaBeltLine.DTO.Event;
+import com.CS4400.AtlantaBeltLine.DTO.EventDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,5 +9,5 @@ import java.util.List;
 public interface EventDAO {
 
     public List<EventDAO> getAllEvents();
-    public Event getEvent(String eventName);
+    public EventDTO getEvent(String eventName);
 }

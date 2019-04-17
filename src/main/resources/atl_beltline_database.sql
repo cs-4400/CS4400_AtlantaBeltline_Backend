@@ -34,7 +34,7 @@ CREATE TABLE `assign_to` (
   PRIMARY KEY (`staff_username`,`event_name`,`event_start`,`site_name`),
   KEY `event_name` (`event_name`,`event_start`),
   KEY `site_name` (`site_name`),
-  CONSTRAINT `assign_to_ibfk_1` FOREIGN KEY (`staff_username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `assign_to_ibfk_1` FOREIGN KEY (`staff_username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `assign_to_ibfk_2` FOREIGN KEY (`event_name`, `event_start`) REFERENCES `event` (`event_name`, `event_start`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `assign_to_ibfk_3` FOREIGN KEY (`site_name`) REFERENCES `site` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -96,7 +96,7 @@ CREATE TABLE `employee` (
   `emp_type` enum('Admin','Manager','Staff') DEFAULT NULL,
   PRIMARY KEY (`emp_ID`),
   KEY `username` (`username`),
-  CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -157,7 +157,7 @@ CREATE TABLE `site` (
   `manager_username` varchar(55) NOT NULL,
   PRIMARY KEY (`name`),
   KEY `manager_username` (`manager_username`),
-  CONSTRAINT `site_ibfk_1` FOREIGN KEY (`manager_username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `site_ibfk_1` FOREIGN KEY (`manager_username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -185,7 +185,7 @@ CREATE TABLE `take_transit` (
   `date` date NOT NULL,
   PRIMARY KEY (`username`,`date`,`type`,`route`),
   KEY `type` (`type`,`route`),
-  CONSTRAINT `take_transit_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `take_transit_ibfk_1` FOREIGN KEY (`username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `take_transit_ibfk_2` FOREIGN KEY (`type`, `route`) REFERENCES `transitDTO` (`type`, `route`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -226,31 +226,31 @@ INSERT INTO `transitDTO` VALUES ('Bike','Relay',1),('Bus','152',2),('MARTA','Blu
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `userDTO`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `userDTO`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `user` (
+CREATE TABLE `userDTO` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `status` enum('Pending','Approved','Declined') DEFAULT 'Pending',
-  `user_type` enum('Employee','Visitor','Employee, Visitor','User') DEFAULT NULL,
+  `user_type` enum('Employee','Visitor','Employee, Visitor','UserDTO') DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `userDTO`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('david.smith','dsmith456','David','Smith','Approved','Employee'),('james.smith','jsmith123','James','Smith','Approved','Employee'),('manager1','manager1','Manager','One','Pending','Employee'),('manager2','manager2','Manager','Two','Approved','Employee, Visitor'),('manager3','manager3','Manager','Three','Approved','Employee'),('manager4','manager4','Manager','Four','Approved','Employee, Visitor'),('manager5','manager5','Manager','Five','Approved','Employee, Visitor'),('maria.garcia','mgarcia123','Maria','Garcia','Approved','Employee, Visitor'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved','User'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined','Visitor'),('mary.smith','msmith789','Mary','Smith','Approved','Visitor'),('michael.smith','msmith456','Michael','Smith','Approved','Employee, Visitor'),('robert.smith','rsmith789','Robert','Smith','Approved','Employee'),('staff1','staff1234','Staff','One','Approved','Employee'),('staff2','staff4567','Staff','Two','Approved','Employee, Visitor'),('staff3','staff7890','Staff','Three','Approved','Employee, Visitor'),('user1','user123456','User','One','Pending','User'),('visitor1','visitor123','Visitor','One','Approved','Visitor');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `userDTO` WRITE;
+/*!40000 ALTER TABLE `userDTO` DISABLE KEYS */;
+INSERT INTO `userDTO` VALUES ('david.smith','dsmith456','David','Smith','Approved','Employee'),('james.smith','jsmith123','James','Smith','Approved','Employee'),('manager1','manager1','Manager','One','Pending','Employee'),('manager2','manager2','Manager','Two','Approved','Employee, Visitor'),('manager3','manager3','Manager','Three','Approved','Employee'),('manager4','manager4','Manager','Four','Approved','Employee, Visitor'),('manager5','manager5','Manager','Five','Approved','Employee, Visitor'),('maria.garcia','mgarcia123','Maria','Garcia','Approved','Employee, Visitor'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved','UserDTO'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined','Visitor'),('mary.smith','msmith789','Mary','Smith','Approved','Visitor'),('michael.smith','msmith456','Michael','Smith','Approved','Employee, Visitor'),('robert.smith','rsmith789','Robert','Smith','Approved','Employee'),('staff1','staff1234','Staff','One','Approved','Employee'),('staff2','staff4567','Staff','Two','Approved','Employee, Visitor'),('staff3','staff7890','Staff','Three','Approved','Employee, Visitor'),('user1','user123456','UserDTO','One','Pending','UserDTO'),('visitor1','visitor123','Visitor','One','Approved','Visitor');
+/*!40000 ALTER TABLE `userDTO` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -264,7 +264,7 @@ CREATE TABLE `user_email` (
   `username` varchar(50) NOT NULL,
   `email` varchar(75) NOT NULL,
   PRIMARY KEY (`username`,`email`),
-  CONSTRAINT `user_email_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `user_email_ibfk_1` FOREIGN KEY (`username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -294,7 +294,7 @@ CREATE TABLE `visit_event` (
   PRIMARY KEY (`username`,`visit_date`,`event_name`,`event_start`,`site_name`),
   KEY `event_name` (`event_name`,`event_start`),
   KEY `site_name` (`site_name`),
-  CONSTRAINT `visit_event_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `visit_event_ibfk_1` FOREIGN KEY (`username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `visit_event_ibfk_2` FOREIGN KEY (`event_name`, `event_start`) REFERENCES `event` (`event_name`, `event_start`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `visit_event_ibfk_3` FOREIGN KEY (`site_name`) REFERENCES `site` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -323,7 +323,7 @@ CREATE TABLE `visit_site` (
   `visit_date` date NOT NULL,
   PRIMARY KEY (`username`,`visit_date`,`site_name`),
   KEY `site_name` (`site_name`),
-  CONSTRAINT `visit_site_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `visit_site_ibfk_1` FOREIGN KEY (`username`) REFERENCES `userDTO` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `visit_site_ibfk_2` FOREIGN KEY (`site_name`) REFERENCES `site` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

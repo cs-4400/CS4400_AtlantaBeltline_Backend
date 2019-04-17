@@ -1,6 +1,6 @@
 package com.CS4400.AtlantaBeltLine.DAO;
 
-import com.CS4400.AtlantaBeltLine.DTO.Event;
+import com.CS4400.AtlantaBeltLine.DTO.EventDTO;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class EventDAOImp implements EventDAO {
     }
 
     @Override
-    public Event getEvent(String eventName) {
+    public EventDTO getEvent(String eventName) {
         return null;
     }
 }

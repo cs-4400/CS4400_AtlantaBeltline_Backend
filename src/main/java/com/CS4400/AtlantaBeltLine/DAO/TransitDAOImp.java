@@ -1,17 +1,18 @@
 package com.CS4400.AtlantaBeltLine.DAO;
 
 import com.CS4400.AtlantaBeltLine.DTO.TransitDTO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.logging.LogManager;
 
 
 @Repository
 public class TransitDAOImp implements TransitDAO {
-//    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(TransitDAO.class)
+//    private static final Logger LOGGER = LogManager.getLogger(TransitDAO.class);
 
     private static final String SELECT_TRANSIT = "SELECT * FROM transit";
 
@@ -40,7 +41,17 @@ public class TransitDAOImp implements TransitDAO {
 
     @Override
     public List<TransitDTO> getAllTransits() {
-//        String sql = "SELECT * from TransitDTO";
+
+        return jdbcTemplate.query(SELECT_TRANSIT, (rs, i) -> {
+            TransitDTO transitDTO = new TransitDTO();
+            transitDTO.setRoute(rs.getString("route"));
+            transitDTO.setType(rs.getString("type"));
+            transitDTO.setPrice(rs.getInt("price"));
+            return transitDTO;
+        });
+    }
+
+    //        String sql = "SELECT * from TransitDTO";
 //
 //        List<TransitDTO> transitList = jdbcTemplate.query(sql, new ResultSetExtractor<List<TransitDTO>>() {
 //            @Override
@@ -56,13 +67,4 @@ public class TransitDAOImp implements TransitDAO {
 //            }
 //        });
 //        return transitList;
-
-        return jdbcTemplate.query(SELECT_TRANSIT, (rs, i) -> {
-            TransitDTO transitDTO = new TransitDTO();
-            transitDTO.setRoute(rs.getString("route"));
-            transitDTO.setType(rs.getString("type"));
-            transitDTO.setPrice(rs.getInt("price"));
-            return transitDTO;
-        });
-    }
 }
