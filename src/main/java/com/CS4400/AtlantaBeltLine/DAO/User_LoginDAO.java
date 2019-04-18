@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface User_LoginDAO {
     public List<User_LoginDTO> getAllUserLogins();
-    public User_LoginDTO checkUserLogin(String email);
+    public User_LoginDTO checkUserLogin(String email, String password);
 }
