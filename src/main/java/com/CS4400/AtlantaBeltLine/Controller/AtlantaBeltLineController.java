@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AtlantaBeltLineController {
@@ -60,6 +61,7 @@ public class AtlantaBeltLineController {
     @GetMapping(path = Constants.CHECK_USER_CREDENTIALS, produces = "application/json")
     public ResponseEntity checkCredentials(@RequestParam(value = "email", required = true) String email) {
         User_LoginDTO user_loginDTO = user_loginDAO.checkUserLogin(email);
+//        Map
         if (user_loginDTO == null) {
             return new ResponseEntity("No user found!!!!!!!" + email, HttpStatus.NOT_FOUND);
         }

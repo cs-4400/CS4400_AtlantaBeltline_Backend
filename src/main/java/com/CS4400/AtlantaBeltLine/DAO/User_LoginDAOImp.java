@@ -1,6 +1,7 @@
 package com.CS4400.AtlantaBeltLine.DAO;
 
 import com.CS4400.AtlantaBeltLine.DTO.User_LoginDTO;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,7 +20,6 @@ public class  User_LoginDAOImp implements User_LoginDAO {
     private static final String USER_LOGIN_VIEW = "user_login";
     private static final String SELECT_ALL_USER_LOGIN = "SELECT * FROM " + USER_LOGIN_VIEW;
     private static final String GET_USER = "SELECT * FROM " + USER_LOGIN_VIEW + " WHERE email = ?";
-    //    private static final String
 
 
 
@@ -39,6 +39,9 @@ public class  User_LoginDAOImp implements User_LoginDAO {
 
     @Override
     public User_LoginDTO checkUserLogin(String email) {
+//        return jdbcTemplate.query(GET_USER, )
+
+
         String sql = "SELECT * FROM user_login WHERE email = " + email;
 
         return jdbcTemplate.query(sql, new ResultSetExtractor<User_LoginDTO>() {
