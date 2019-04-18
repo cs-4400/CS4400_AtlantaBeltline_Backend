@@ -12,6 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class AtlantaBeltLineController {
     @PostMapping(path = "/")
     public String welcome() {
         LOGGER.info("TESTING");
-        return "Welcome to Atlanta Beltline App!";
+        return "アトランタベルトラインアプリへようこそ！";
     }
 
 
@@ -53,6 +55,15 @@ public class AtlantaBeltLineController {
     public List<User_LoginDTO> getAllUserLogins() {
         LOGGER.info("CHECKING user login");
         return user_loginDAO.getAllUserLogins();
+    }
+
+    @GetMapping(path = Constants.CHECK_USER_CREDENTIALS, produces = "application/json")
+    public ResponseEntity checkCredentials(@PathVariable("email") String email) {
+        User_LoginDTO user_loginDTO = user_loginDAO.checkUserLogin(email);
+        if (user_loginDTO == null) {
+            return new ResponseEntity("No user found!!!!!!!" + email, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(user_loginDTO, HttpStatus.OK);
     }
 
 
