@@ -1,6 +1,6 @@
 package com.CS4400.AtlantaBeltLine.DAO;
 
-import com.CS4400.AtlantaBeltLine.DTO.Employee;
+import com.CS4400.AtlantaBeltLine.DTO.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,17 +17,17 @@ public class EmployeeDAOImp implements EmployeeDAO {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public void saveEmployee(Employee employee) {
+    public void saveEmployee(EmployeeDTO employeeDTO) {
 
     }
 
     @Override
-    public Employee getEmployeeByUsername(String username) {
+    public EmployeeDTO getEmployeeByUsername(String username) {
         return null;
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
+    public void updateEmployee(EmployeeDTO employeeDTO) {
 
     }
 
@@ -37,23 +37,23 @@ public class EmployeeDAOImp implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public List<EmployeeDTO> getAllEmployees() {
         String sql = "SELECT * FROM employee";
 
-        List employeeList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Employee>>() {
+        List employeeList = jdbcTemplate.query(sql, new ResultSetExtractor<List<EmployeeDTO>>() {
             @Override
             public List extractData(ResultSet rs) throws SQLException, DataAccessException {
-                List<Employee> list = new ArrayList<>();
+                List<EmployeeDTO> list = new ArrayList<>();
                 while (rs.next()) {
-                    Employee employee = new Employee();
-                    employee.setUsername(rs.getString(1));
-                    employee.setEmp_ID(rs.getInt(2));
-                    employee.setPhone(rs.getString(3));
-                    employee.setAddress(rs.getString(4));
-                    employee.setCity(rs.getString(5));
-                    employee.setState(rs.getString(6));
-                    employee.setZip(rs.getInt(7));
-                    list.add(employee);
+                    EmployeeDTO employeeDTO = new EmployeeDTO();
+                    employeeDTO.setUsername(rs.getString(1));
+                    employeeDTO.setEmp_ID(rs.getInt(2));
+                    employeeDTO.setPhone(rs.getString(3));
+                    employeeDTO.setAddress(rs.getString(4));
+                    employeeDTO.setCity(rs.getString(5));
+                    employeeDTO.setState(rs.getString(6));
+                    employeeDTO.setZip(rs.getInt(7));
+                    list.add(employeeDTO);
                 }
                 return list;
             }

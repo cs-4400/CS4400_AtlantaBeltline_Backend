@@ -58,7 +58,7 @@ public class AtlantaBeltLineController {
     }
 
     @GetMapping(path = Constants.CHECK_USER_CREDENTIALS, produces = "application/json")
-    public ResponseEntity checkCredentials(@PathVariable("email") String email) {
+    public ResponseEntity checkCredentials(@RequestParam(value = "email", required = true) String email) {
         User_LoginDTO user_loginDTO = user_loginDAO.checkUserLogin(email);
         if (user_loginDTO == null) {
             return new ResponseEntity("No user found!!!!!!!" + email, HttpStatus.NOT_FOUND);

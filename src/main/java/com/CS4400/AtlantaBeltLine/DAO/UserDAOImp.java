@@ -41,17 +41,17 @@ public class UserDAOImp implements UserDAO {
 
     @Override
     public int createUser(UserDTO userDTO) {
-//        String sql = "INSERT INTO user(Username, Password, FirstName, LastName, Status) values(?,?,?,?,?)";
-//
-//        try {
-//            int counter = jdbcTemplate.update(sql,
-//                    new Object[] {userDTO.getUsername(), userDTO.getLastName(), userDTO.getPassword(), userDTO.getStatus()});
-//            return counter;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return 0;
-//        }
-        return 0;
+        String sql = "INSERT INTO user(Username, Password, FirstName, LastName, Status) values(?,?,?,?,?,?)";
+
+        try {
+            int counter = jdbcTemplate.update(sql,
+                    new Object[] {userDTO.getUsername(), userDTO.getPassword(), userDTO.getLastName(), userDTO.getPassword(), userDTO.getStatus(), userDTO.getUser_type()});
+            return counter;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+//        return 0;
     }
 
     @Override

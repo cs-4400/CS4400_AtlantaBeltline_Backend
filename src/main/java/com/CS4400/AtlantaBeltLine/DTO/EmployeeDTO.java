@@ -2,21 +2,21 @@ package com.CS4400.AtlantaBeltLine.DTO;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "employee")
-public class Employee {
+//@Entity
+//@Table(name = "employee")
+public class EmployeeDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "username")
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "username")
     private String username;
-    @Column(name = "emp_ID")
+//    @Column(name = "emp_ID")
     private int emp_ID;
-    @Column(name = "phone")
+//    @Column(name = "phone")
     private String phone;
-    @Column(name = "Address")
+//    @Column(name = "Address")
     private String address;
-    @Column(name = "City")
+//    @Column(name = "City")
     private String city;
     private String State;
     private int zip;

@@ -79,13 +79,13 @@ INSERT INTO `connects` VALUES ('Historic Fourth Ward Park','Bike','Relay'),('Pie
 UNLOCK TABLES;
 
 --
--- Table structure for table `employee`
+-- Table structure for table `employeeDTO`
 --
 
-DROP TABLE IF EXISTS `employee`;
+DROP TABLE IF EXISTS `employeeDTO`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `employee` (
+CREATE TABLE `employeeDTO` (
   `username` varchar(50) NOT NULL,
   `emp_ID` int(11) NOT NULL,
   `phone` varchar(10) NOT NULL,
@@ -101,13 +101,13 @@ CREATE TABLE `employee` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `employee`
+-- Dumping data for table `employeeDTO`
 --
 
-LOCK TABLES `employee` WRITE;
-/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('james.smith',1,'4043721234','123 East Main Street','Rochester','NY',14604,'Admin'),('michael.smith',2,'4043726789','350 Ferst Drive','Atlanta','GA',30332,'Staff'),('robert.smith',3,'1234567890','123 East Main Street','Columbus','OH',43215,'Staff'),('maria.garcia',4,'7890123456','123 East Main Street','Richland','PA',17987,'Manager'),('david.smith',5,'5124776435','350 Ferst Drive','Atlanta','GA',30332,'Manager'),('manager1',6,'8045126767','123 East Main Street','Rochester','NY',14604,'Manager'),('manager2',7,'9876543210','123 East Main Street','Rochester','NY',14604,'Manager'),('manager3',8,'5432167890','350 Ferst Drive','Atlanta','GA',30332,'Manager'),('manager4',9,'8053467565','123 East Main Street','Columbus','OH',43215,'Manager'),('manager5',10,'8031446782','801 Atlantic Drive','Atlanta','GA',30332,'Manager'),('staff1',11,'8024456765','266 Ferst Drive Northwest','Atlanta','GA',30332,'Staff'),('staff2',12,'8888888888','266 Ferst Drive Northwest','Atlanta','GA',30332,'Staff'),('staff3',13,'3333333333','801 Atlantic Drive','Atlanta','GA',30332,'Staff');
-/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+LOCK TABLES `employeeDTO` WRITE;
+/*!40000 ALTER TABLE `employeeDTO` DISABLE KEYS */;
+INSERT INTO `employeeDTO` VALUES ('james.smith',1,'4043721234','123 East Main Street','Rochester','NY',14604,'Admin'),('michael.smith',2,'4043726789','350 Ferst Drive','Atlanta','GA',30332,'Staff'),('robert.smith',3,'1234567890','123 East Main Street','Columbus','OH',43215,'Staff'),('maria.garcia',4,'7890123456','123 East Main Street','Richland','PA',17987,'Manager'),('david.smith',5,'5124776435','350 Ferst Drive','Atlanta','GA',30332,'Manager'),('manager1',6,'8045126767','123 East Main Street','Rochester','NY',14604,'Manager'),('manager2',7,'9876543210','123 East Main Street','Rochester','NY',14604,'Manager'),('manager3',8,'5432167890','350 Ferst Drive','Atlanta','GA',30332,'Manager'),('manager4',9,'8053467565','123 East Main Street','Columbus','OH',43215,'Manager'),('manager5',10,'8031446782','801 Atlantic Drive','Atlanta','GA',30332,'Manager'),('staff1',11,'8024456765','266 Ferst Drive Northwest','Atlanta','GA',30332,'Staff'),('staff2',12,'8888888888','266 Ferst Drive Northwest','Atlanta','GA',30332,'Staff'),('staff3',13,'3333333333','801 Atlantic Drive','Atlanta','GA',30332,'Staff');
+/*!40000 ALTER TABLE `employeeDTO` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -238,7 +238,7 @@ CREATE TABLE `userDTO` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `status` enum('Pending','Approved','Declined') DEFAULT 'Pending',
-  `user_type` enum('Employee','Visitor','Employee, Visitor','UserDTO') DEFAULT NULL,
+  `user_type` enum('EmployeeDTO','Visitor','EmployeeDTO, Visitor','UserDTO') DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -249,7 +249,7 @@ CREATE TABLE `userDTO` (
 
 LOCK TABLES `userDTO` WRITE;
 /*!40000 ALTER TABLE `userDTO` DISABLE KEYS */;
-INSERT INTO `userDTO` VALUES ('david.smith','dsmith456','David','Smith','Approved','Employee'),('james.smith','jsmith123','James','Smith','Approved','Employee'),('manager1','manager1','Manager','One','Pending','Employee'),('manager2','manager2','Manager','Two','Approved','Employee, Visitor'),('manager3','manager3','Manager','Three','Approved','Employee'),('manager4','manager4','Manager','Four','Approved','Employee, Visitor'),('manager5','manager5','Manager','Five','Approved','Employee, Visitor'),('maria.garcia','mgarcia123','Maria','Garcia','Approved','Employee, Visitor'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved','UserDTO'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined','Visitor'),('mary.smith','msmith789','Mary','Smith','Approved','Visitor'),('michael.smith','msmith456','Michael','Smith','Approved','Employee, Visitor'),('robert.smith','rsmith789','Robert','Smith','Approved','Employee'),('staff1','staff1234','Staff','One','Approved','Employee'),('staff2','staff4567','Staff','Two','Approved','Employee, Visitor'),('staff3','staff7890','Staff','Three','Approved','Employee, Visitor'),('user1','user123456','UserDTO','One','Pending','UserDTO'),('visitor1','visitor123','Visitor','One','Approved','Visitor');
+INSERT INTO `userDTO` VALUES ('david.smith','dsmith456','David','Smith','Approved','EmployeeDTO'),('james.smith','jsmith123','James','Smith','Approved','EmployeeDTO'),('manager1','manager1','Manager','One','Pending','EmployeeDTO'),('manager2','manager2','Manager','Two','Approved','EmployeeDTO, Visitor'),('manager3','manager3','Manager','Three','Approved','EmployeeDTO'),('manager4','manager4','Manager','Four','Approved','EmployeeDTO, Visitor'),('manager5','manager5','Manager','Five','Approved','EmployeeDTO, Visitor'),('maria.garcia','mgarcia123','Maria','Garcia','Approved','EmployeeDTO, Visitor'),('maria.hernandez','mhernandez','Maria','Hernandez','Approved','UserDTO'),('maria.rodriguez','mrodriguez','Maria','Rodriguez','Declined','Visitor'),('mary.smith','msmith789','Mary','Smith','Approved','Visitor'),('michael.smith','msmith456','Michael','Smith','Approved','EmployeeDTO, Visitor'),('robert.smith','rsmith789','Robert','Smith','Approved','EmployeeDTO'),('staff1','staff1234','Staff','One','Approved','EmployeeDTO'),('staff2','staff4567','Staff','Two','Approved','EmployeeDTO, Visitor'),('staff3','staff7890','Staff','Three','Approved','EmployeeDTO, Visitor'),('user1','user123456','UserDTO','One','Pending','UserDTO'),('visitor1','visitor123','Visitor','One','Approved','Visitor');
 /*!40000 ALTER TABLE `userDTO` ENABLE KEYS */;
 UNLOCK TABLES;
 

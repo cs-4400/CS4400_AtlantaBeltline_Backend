@@ -104,13 +104,13 @@ INSERT INTO `connects` VALUES ('Historic Fourth Ward Park','Bike','Relay'),('Pie
 UNLOCK TABLES;
 
 --
--- Table structure for table `employee`
+-- Table structure for table `employeeDTO`
 --
 
-DROP TABLE IF EXISTS `employee`;
+DROP TABLE IF EXISTS `employeeDTO`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `employee` (
+CREATE TABLE `employeeDTO` (
   `Username` varchar(50) NOT NULL,
   `EmpID` int(11) NOT NULL,
   `Phone` varchar(10) NOT NULL,
@@ -125,13 +125,13 @@ CREATE TABLE `employee` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `employee`
+-- Dumping data for table `employeeDTO`
 --
 
-LOCK TABLES `employee` WRITE;
-/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('james.smith',1,'4043721234','123 East Main Street','Rochester','NY',14604),('michael.smith',2,'4043726789','350 Ferst Drive','Atlanta','GA',30332),('robert.smith',3,'1234567890','123 East Main Street','Columbus','OH',43215),('maria.garcia',4,'7890123456','123 East Main Street','Richland','PA',17987),('david.smith',5,'5124776435','350 Ferst Drive','Atlanta','GA',30332),('manager1',6,'8045126767','123 East Main Street','Rochester','NY',14604),('manager2',7,'9876543210','123 East Main Street','Rochester','NY',14604),('manager3',8,'5432167890','350 Ferst Drive','Atlanta','GA',30332),('manager4',9,'8053467565','123 East Main Street','Columbus','OH',43215),('manager5',10,'8031446782','801 Atlantic Drive','Atlanta','GA',30332),('staff1',11,'8024456765','266 Ferst Drive Northwest','Atlanta','GA',30332),('staff2',12,'8888888888','266 Ferst Drive Northwest','Atlanta','GA',30332),('staff3',13,'3333333333','801 Atlantic Drive','Atlanta','GA',30332);
-/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+LOCK TABLES `employeeDTO` WRITE;
+/*!40000 ALTER TABLE `employeeDTO` DISABLE KEYS */;
+INSERT INTO `employeeDTO` VALUES ('james.smith',1,'4043721234','123 East Main Street','Rochester','NY',14604),('michael.smith',2,'4043726789','350 Ferst Drive','Atlanta','GA',30332),('robert.smith',3,'1234567890','123 East Main Street','Columbus','OH',43215),('maria.garcia',4,'7890123456','123 East Main Street','Richland','PA',17987),('david.smith',5,'5124776435','350 Ferst Drive','Atlanta','GA',30332),('manager1',6,'8045126767','123 East Main Street','Rochester','NY',14604),('manager2',7,'9876543210','123 East Main Street','Rochester','NY',14604),('manager3',8,'5432167890','350 Ferst Drive','Atlanta','GA',30332),('manager4',9,'8053467565','123 East Main Street','Columbus','OH',43215),('manager5',10,'8031446782','801 Atlantic Drive','Atlanta','GA',30332),('staff1',11,'8024456765','266 Ferst Drive Northwest','Atlanta','GA',30332),('staff2',12,'8888888888','266 Ferst Drive Northwest','Atlanta','GA',30332),('staff3',13,'3333333333','801 Atlantic Drive','Atlanta','GA',30332);
+/*!40000 ALTER TABLE `employeeDTO` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

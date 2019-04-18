@@ -1,5 +1,8 @@
 package com.CS4400.AtlantaBeltLine.DTO;
 
+import com.CS4400.AtlantaBeltLine.Util.Status;
+import com.CS4400.AtlantaBeltLine.Util.User_Type;
+
 import javax.persistence.*;
 
 //@Entity
@@ -16,10 +19,10 @@ public class UserDTO {
     private String firstName;
 //    @Column(name = "LastName")
     private String lastName;
-//    @Column(name = "Status")
-//    private enum status;
+
+    private Status status;
 //
-//    privaet enum user_type;
+    private User_Type user_type;
 
     public UserDTO() {
     }
@@ -63,13 +66,21 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-//    public int getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(int status) {
-//        this.status = status;
-//    }
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public User_Type getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(User_Type user_type) {
+        this.user_type = user_type;
+    }
 
     public String toString(){
         return username + "|" + firstName + "|" + lastName;
