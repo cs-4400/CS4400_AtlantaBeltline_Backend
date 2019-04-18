@@ -122,7 +122,7 @@ CREATE TABLE `event` (
   `event_start` date NOT NULL,
   `site_name` varchar(50) NOT NULL,
   `end_date` date DEFAULT NULL,
-  `event_price` int(11) DEFAULT NULL,
+  `event_price` double (10, 2) DEFAULT NULL,
   `capacity` int(11) DEFAULT NULL,
   `min_staff` int(11) DEFAULT NULL,
   `description` text,

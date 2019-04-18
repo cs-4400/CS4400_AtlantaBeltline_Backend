@@ -3,8 +3,10 @@ package com.CS4400.AtlantaBeltLine.Controller;
 import com.CS4400.AtlantaBeltLine.DAO.TransitDAO;
 import com.CS4400.AtlantaBeltLine.DAO.UserDAO;
 
+import com.CS4400.AtlantaBeltLine.DAO.User_LoginDAO;
 import com.CS4400.AtlantaBeltLine.DTO.TransitDTO;
 import com.CS4400.AtlantaBeltLine.DTO.UserDTO;
+import com.CS4400.AtlantaBeltLine.DTO.User_LoginDTO;
 import com.CS4400.AtlantaBeltLine.Util.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +26,9 @@ public class AtlantaBeltLineController {
     @Autowired
     TransitDAO transitDAO;
 
+    @Autowired
+    User_LoginDAO user_loginDAO;
+
 
     @PostMapping(path = "/")
     public String welcome() {
@@ -42,6 +47,12 @@ public class AtlantaBeltLineController {
     public List<UserDTO> getAllUsers() {
         LOGGER.info("Getting all users...");
         return userDAO.getAllUsers();
+    }
+
+    @GetMapping(path = Constants.USER_LOGIN_ENDPOINT, produces = "application/json")
+    public List<User_LoginDTO> getAllUserLogins() {
+        LOGGER.info("CHECKING user login");
+        return user_loginDAO.getAllUserLogins();
     }
 
 
