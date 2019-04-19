@@ -14,6 +14,7 @@ public class UserDAOImp implements UserDAO {
 
     private static final String USER_TABLE = "user";
     private static final String SELECT_ALL_USERS = "SELECT * FROM " + USER_TABLE;
+    private static final String CREATE_USER = "INSERT INTO " + USER_TABLE + " (username, password, first_name, last_name, status, user_type) VALUES (?,?,?,?,?,?,?)";
 
 
     @Autowired
@@ -41,10 +42,10 @@ public class UserDAOImp implements UserDAO {
 
     @Override
     public int createUser(UserDTO userDTO) {
-        String sql = "INSERT INTO user(Username, Password, FirstName, LastName, Status) values(?,?,?,?,?,?)";
+//        String sql = "INSERT INTO user(Username, Password, FirstName, LastName, Status) values(?,?,?,?,?,?)";
 
         try {
-            int counter = jdbcTemplate.update(sql,
+            int counter = jdbcTemplate.update(CREATE_USER,
                     new Object[] {userDTO.getUsername(), userDTO.getPassword(), userDTO.getLastName(), userDTO.getPassword(), userDTO.getStatus(), userDTO.getUser_type()});
             return counter;
         } catch (Exception e) {
