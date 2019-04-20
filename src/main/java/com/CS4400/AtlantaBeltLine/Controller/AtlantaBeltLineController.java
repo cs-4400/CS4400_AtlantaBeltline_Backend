@@ -8,6 +8,8 @@ import com.CS4400.AtlantaBeltLine.DTO.TransitDTO;
 import com.CS4400.AtlantaBeltLine.DTO.UserDTO;
 import com.CS4400.AtlantaBeltLine.DTO.User_LoginDTO;
 import com.CS4400.AtlantaBeltLine.Util.Constants;
+import com.CS4400.AtlantaBeltLine.Util.Status;
+import com.CS4400.AtlantaBeltLine.Util.User_Type;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +46,6 @@ public class AtlantaBeltLineController {
         return "アトランタベルトラインアプリへようこそ！";
     }
 
-
     @GetMapping(path = Constants.TRANSIT_ENDPOINT, produces = "application/json")
     public List<TransitDTO> getAllTransits() {
         LOGGER.info("Getting All Transit details.");
@@ -65,18 +66,35 @@ public class AtlantaBeltLineController {
 
     @GetMapping(path = Constants.CHECK_USER_CREDENTIALS_ENDPOINT, produces = "application/json")
     public ResponseEntity checkCredentials(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) {
-        User_LoginDTO user_loginDTO = user_loginDAO.checkUserLogin(email, password);
+        User_LoginDTO user_loginDTO = user_loginDAO.checkUserLogin(email);
+
+        //email doesn't exist
         if (user_loginDTO == null) {
-            return new ResponseEntity("No user found!!!!!!! " + email + " does not exist in the system or the wrong password was entered!", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("No user found!!!!!!! " + email + " does not exist in the system!", HttpStatus.NOT_FOUND);
         }
+
+        //password is WRONG
+        if (!user_loginDTO.getPassword().equals(password)) {
+            return new ResponseEntity("Password is wrong!!!!! Double check your password and try again.", HttpStatus.BAD_REQUEST);
+        }
+
+        //credentials are all good.
         return new ResponseEntity(user_loginDTO, HttpStatus.OK);
 //        return new ResponseEntity("User found!!!!" + email, HttpStatus.OK);
     }
 
-//    @PostMapping(path = Constants.CREATE_USER_ENDPOINT)
-//    public ResponseEntity registerUser(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "first_name") String first_name,) {
-//
-//    }
+    @PostMapping(path = Constants.CREATE_USER_ENDPOINT)
+    public void registerUser(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "first_name") String first_name, @RequestParam(value = "last_name") String last_name, @RequestParam(value = "status")Status status, @RequestParam(value = "user_type") User_Type user_type) {
+        UserDTO newUser = new UserDTO();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        newUser.setFirstName(first_name);
+        newUser.setLastName(last_name);
+        newUser.setStatus(status);
+        newUser.setUser_type(user_type);
+
+        userDAO.createUser(newUser);
+    }
 
 
 

@@ -16,7 +16,7 @@ public class UserDAOImp implements UserDAO {
 
     private static final String USER_TABLE = "user";
     private static final String SELECT_ALL_USERS = "SELECT * FROM " + USER_TABLE;
-    private static final String CREATE_USER = "INSERT INTO " + USER_TABLE + " (username, password, first_name, last_name, status, user_type) VALUES (?,?,?,?,?,?,?)";
+    private static final String CREATE_USER = "INSERT INTO " + USER_TABLE + " (username, password, first_name, last_name, status, user_type) VALUES (?,?,?,?,?), status.get";
 
 
     @Autowired

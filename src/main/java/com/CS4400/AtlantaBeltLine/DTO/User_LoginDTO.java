@@ -1,11 +1,13 @@
 package com.CS4400.AtlantaBeltLine.DTO;
 
+import com.CS4400.AtlantaBeltLine.Util.User_Type;
+
 public class User_LoginDTO {
 
     private String email;
     private String password;
     private String uname1;
-//    private enum user_type;
+    private String user_type;
 
 
     public User_LoginDTO() {
@@ -33,5 +35,17 @@ public class User_LoginDTO {
 
     public void setUname1(String uname1) {
         this.uname1 = uname1;
+    }
+
+    public String getUser_type(User_Type user_type) {
+        return user_type.type;
+    }
+
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
     }
 }

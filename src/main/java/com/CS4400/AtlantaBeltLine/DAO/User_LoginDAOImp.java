@@ -20,7 +20,9 @@ public class  User_LoginDAOImp implements User_LoginDAO {
 
     private static final String USER_LOGIN_VIEW = "user_login_test";
     private static final String SELECT_ALL_USER_LOGIN = "SELECT * FROM " + USER_LOGIN_VIEW;
-    private static final String GET_USER = "SELECT * FROM " + USER_LOGIN_VIEW + " WHERE email = ? AND password = ?";
+//    private static final String GET_USER = "SELECT * FROM " + USER_LOGIN_VIEW + " WHERE email = ? AND password = ?";
+    private static final String GET_USER = "call login_user(?)";
+
 
 
 
@@ -34,13 +36,14 @@ public class  User_LoginDAOImp implements User_LoginDAO {
             user_loginDTO.setEmail(rs.getString("email"));
             user_loginDTO.setUname1(rs.getString("uname1"));
             user_loginDTO.setPassword(rs.getString("password"));
+            user_loginDTO.setUser_type(rs.getString("user_type")); //? why isn't this column enum type?
             return user_loginDTO;
         });
     }
 
     @Override
-    public User_LoginDTO checkUserLogin(String email, String password) {
-        return jdbcTemplate.query(GET_USER, new Object[]{email, password}, new ResultSetExtractor<User_LoginDTO>() {
+    public User_LoginDTO checkUserLogin(String email) {
+        return jdbcTemplate.query(GET_USER, new Object[]{email}, new ResultSetExtractor<User_LoginDTO>() {
             @Override
             public User_LoginDTO extractData(ResultSet rs) throws SQLException, DataAccessException {
                 if(rs.next()) {
@@ -48,8 +51,8 @@ public class  User_LoginDAOImp implements User_LoginDAO {
                     user_loginDTO.setEmail(rs.getString("email"));
                     user_loginDTO.setPassword(rs.getString("password"));
                     user_loginDTO.setUname1(rs.getString("uname1"));
+                    user_loginDTO.setUser_type(rs.getString("user_type"));
                     return user_loginDTO;
-
                 }
                 return null;
             }

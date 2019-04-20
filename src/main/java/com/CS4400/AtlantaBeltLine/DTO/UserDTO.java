@@ -9,25 +9,22 @@ import javax.persistence.*;
 //@Table(name = "user")
 public class UserDTO {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "Username")
     private String username;
-//    @Column(name = "Password")
     private String password;
-//    @Column(name = "FirstName")
     private String firstName;
-//    @Column(name = "LastName")
+
     private String lastName;
 
-    private Status status;
-//
-    private User_Type user_type;
+    private Status statusEnum;
+
+    private String status;
+
+    private String user_type;
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String password, String firstName, String lastName, Status status, User_Type user_type) {
+    public UserDTO(String username, String password, String firstName, String lastName, String status, String user_type) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -68,25 +65,33 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-    public Status getStatus() {
+    public String getStatus(Status status) {
+        return status.status;
+    }
+
+    public String getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
-        this.status = status;
+        this.status = status.status;
     }
 
-    public User_Type getUser_type() {
+    public String getUser_type(User_Type user_type) {
+        return user_type.type;
+    }
+
+    public String getUser_type() {
         return user_type;
     }
 
     public void setUser_type(User_Type user_type) {
-        this.user_type = user_type;
+        this.user_type = user_type.type;
     }
 
-    public String toString(){
-        return username + "|" + firstName + "|" + lastName;
-    }
+//    public String toString(){
+//        return username + "|" + firstName + "|" + lastName;
+//    }
 
 
 

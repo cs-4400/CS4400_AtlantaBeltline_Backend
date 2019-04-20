@@ -2,16 +2,16 @@ package com.CS4400.AtlantaBeltLine.DTO;
 
 public class TransitDTO {
 
-    private String type;
     private String route;
+    private String type;
     private int price;
 
     public TransitDTO() {
     }
 
-    public TransitDTO(String type, String route, int price) {
-        this.type = type;
+    public TransitDTO(String route, String type, int price) {
         this.route = route;
+        this.type = type;
         this.price = price;
     }
 

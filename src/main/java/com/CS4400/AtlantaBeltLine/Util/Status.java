@@ -7,6 +7,10 @@ public enum Status {
 
     public String status;
 
+    public static String getStatusString(Status status) {
+        return status.status;
+    }
+
     public static Status getStatusType(String status) {
         for (Status s : Status.values()) {
             if (status.equals(s.status)) {
