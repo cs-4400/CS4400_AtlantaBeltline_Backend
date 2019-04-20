@@ -27,11 +27,13 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String username, String password, String firstName) {
+    public UserDTO(String username, String password, String firstName, String lastName, Status status, User_Type user_type) {
         this.username = username;
         this.password = password;
-        this.firstName = username;
-//        this.status = status;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.status = status;
+        this.user_type = user_type;
     }
 
     public String getUsername() {
@@ -85,5 +87,7 @@ public class UserDTO {
     public String toString(){
         return username + "|" + firstName + "|" + lastName;
     }
+
+
 
 }

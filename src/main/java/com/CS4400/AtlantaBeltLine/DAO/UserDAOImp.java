@@ -1,6 +1,8 @@
 package com.CS4400.AtlantaBeltLine.DAO;
 
 import com.CS4400.AtlantaBeltLine.DTO.UserDTO;
+import com.CS4400.AtlantaBeltLine.Util.Status;
+import com.CS4400.AtlantaBeltLine.Util.User_Type;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,7 +32,8 @@ public class UserDAOImp implements UserDAO {
             userDTO.setPassword(rs.getString("password"));
             userDTO.setFirstName(rs.getString("first_name"));
             userDTO.setLastName(rs.getString("last_name"));
-//            userDTO.setStatus(rs.getEnum????);
+            userDTO.setStatus(Status.getStatusType(rs.getString("status")));
+            userDTO.setUser_type(User_Type.getUserType(rs.getString("user_type")));
             return userDTO;
         });
     }

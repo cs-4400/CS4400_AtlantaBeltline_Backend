@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 public class AtlantaBeltLineController {
     private static final Logger LOGGER = LogManager.getLogger(AtlantaBeltLineController.class);
